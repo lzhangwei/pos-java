@@ -2,9 +2,6 @@ package com.thoughtworks.iamcoach.pos;
 
 import java.util.LinkedList;
 
-/**
- * Created by zhangwei on 14-10-9.
- */
 public class Cart {
     private LinkedList<CartItem> cartItemList;
 
