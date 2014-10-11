@@ -28,4 +28,14 @@ public class Load {
         return categories;
     }
 
+    public Item findItemByBarcode(String barcode) {
+        Item result = null;
+        for(int i =0;i<items.size();i++){
+            if(barcode.equals(items.get(i).getBarcode())){
+                result = items.get(i);
+                break;
+            }
+        }
+        return result;
+    }
 }
