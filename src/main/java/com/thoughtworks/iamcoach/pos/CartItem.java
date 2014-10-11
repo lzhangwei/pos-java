@@ -16,7 +16,7 @@ public class CartItem {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(double num) {
         this.num = num;
     }
 
