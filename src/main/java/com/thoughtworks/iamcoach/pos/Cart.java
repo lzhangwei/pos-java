@@ -21,7 +21,7 @@ public class Cart {
         int tag = 0;
         for (int i = 0; i < cartItemList.size(); i++) {
             if (cartItemList.get(i).getItem().getId() == item.getId()) {
-                int num = cartItemList.get(i).getNum();
+                double num = cartItemList.get(i).getNum();
                 cartItemList.get(i).setNum(num + 1);
                 tag = 1;
                 break;
