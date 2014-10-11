@@ -23,7 +23,7 @@ public class Scanner {
                 result.push(cartItem);
             }
         } catch (Exception e) {
-            System.out.print("throw IOException when read all lines!");
+            e.printStackTrace();
         }
 
         return result;
