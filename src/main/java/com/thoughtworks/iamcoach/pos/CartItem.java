@@ -2,7 +2,7 @@ package com.thoughtworks.iamcoach.pos;
 
 public class CartItem {
     private Item item;
-    private int num;
+    private double num;
 
     public Item getItem() {
         return item;
@@ -12,7 +12,7 @@ public class CartItem {
         this.item = item;
     }
 
-    public int getNum() {
+    public double getNum() {
         return num;
     }
 
@@ -20,7 +20,7 @@ public class CartItem {
         this.num = num;
     }
 
-    public CartItem(Item item, int num) {
+    public CartItem(Item item, double num) {
         this.item = item;
         this.num = num;
     }
