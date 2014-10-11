@@ -7,13 +7,20 @@ import java.util.List;
 
 public class Scanner {
 
+    private Load load;
+
+    {
+        this.load = new Load();
+    }
+
     public LinkedList<CartItem> readCartFile(Path path) {
         LinkedList<CartItem> result = new LinkedList<CartItem>();
         try {
             List<String> fileLines = Files.readAllLines(path);
             for (int i = 0; i < fileLines.size(); i++) {
                 String[] barcode = fileLines.get(i).split("-");
-
+                CartItem cartItem = new CartItem(load.findItemByBarcode(barcode[0]),Integer.parseInt(barcode[1]));
+                result.push(cartItem);
             }
         } catch (Exception e) {
             System.out.print("throw IOException when read all lines!");
