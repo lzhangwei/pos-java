@@ -7,19 +7,12 @@ import java.util.List;
 
 public class Promotion {
 
-    private Load load;
-
-    {
-        this.load = new Load();
-    }
-
-    public List<Item> readBuyTwoGetOneFile(Path path) {
-        List<Item> result = new ArrayList<Item>();
+    public List<String> readBuyTwoGetOneFile(Path path) {
+        List<String> result = new ArrayList<String>();
         try {
             List<String> fileLines = Files.readAllLines(path);
             for (int i = 0; i < fileLines.size(); i++) {
-                String barcode = fileLines.get(i);
-                result.set(i, load.findItemByBarcode(barcode));
+                result.set(i, fileLines.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,13 +20,12 @@ public class Promotion {
         return result;
     }
 
-    public List<Item> readSecondHalfPriceFile(Path path) {
-        List<Item> result = new ArrayList<Item>();
+    public List<String> readSecondHalfPriceFile(Path path) {
+        List<String> result = new ArrayList<String>();
         try {
             List<String> fileLines = Files.readAllLines(path);
             for (int i = 0; i < fileLines.size(); i++) {
-                String barcode = fileLines.get(i);
-                result.set(i, load.findItemByBarcode(barcode));
+                result.set(i, fileLines.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();
