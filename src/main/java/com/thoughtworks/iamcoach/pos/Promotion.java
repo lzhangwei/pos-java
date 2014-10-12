@@ -27,5 +27,17 @@ public class Promotion {
         return result;
     }
 
-    
+    public List<Item> readSecondHalfPriceFile(Path path) {
+        List<Item> result = new ArrayList<Item>();
+        try {
+            List<String> fileLines = Files.readAllLines(path);
+            for (int i = 0; i < fileLines.size(); i++) {
+                String barcode = fileLines.get(i);
+                result.set(i, load.findItemByBarcode(barcode));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
