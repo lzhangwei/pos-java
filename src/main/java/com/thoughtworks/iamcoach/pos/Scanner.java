@@ -2,6 +2,7 @@ package com.thoughtworks.iamcoach.pos;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +14,8 @@ public class Scanner {
         this.load = new Load();
     }
 
-    public LinkedList<CartItem> readCartFile(Path path) {
+    public LinkedList<CartItem> readCartFile() {
+        Path path = Paths.get("../resources/cart.txt");
         LinkedList<CartItem> result = new LinkedList<CartItem>();
         try {
             List<String> fileLines = Files.readAllLines(path);
