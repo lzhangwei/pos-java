@@ -35,4 +35,18 @@ public class Promotion {
         }
         return result;
     }
+
+    public List<String> readDiscountFile() {
+        Path path = Paths.get("../resources/discount_promotion.txt");
+        List<String> result = new ArrayList<String>();
+        try {
+            List<String> fileLines = Files.readAllLines(path);
+            for (int i = 0; i < fileLines.size(); i++) {
+                result.set(i, fileLines.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
