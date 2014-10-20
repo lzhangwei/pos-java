@@ -3,6 +3,24 @@ package com.thoughtworks.iamcoach.pos;
 public class CartItem {
     private Item item;
     private double num;
+    private double sumPrice;
+    private double promotionPrice;
+
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
+    }
+
+    public double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(double sumPrice) {
+        this.sumPrice = sumPrice;
+    }
 
     public Item getItem() {
         return item;
