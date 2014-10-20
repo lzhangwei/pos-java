@@ -48,7 +48,7 @@ public class PosTest {
         freeBarcodes.add("ITEM000005");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        ArrayList<String> result = pos.calFreePromotion(freeBarcodes);
+        ArrayList<CartItem> result = pos.calFreePromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
         assertThat(result.get(1).getSumPrice()).isEqualTo(15);
         assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
@@ -72,7 +72,7 @@ public class PosTest {
         freeBarcodes.add("ITEM000005");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        ArrayList<String> result = pos.calHalfPromotion(freeBarcodes);
+        ArrayList<CartItem> result = pos.calHalfPromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
         assertThat(result.get(1).getSumPrice()).isEqualTo(15);
         assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
@@ -96,7 +96,7 @@ public class PosTest {
         freeBarcodes.add("ITEM000005:90");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        ArrayList<String> result = pos.calDiscountPromotion(freeBarcodes);
+        ArrayList<CartItem> result = pos.calDiscountPromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
         assertThat(result.get(1).getSumPrice()).isEqualTo(15);
         assertThat(result.get(1).getPromotionPrice()).isEqualTo(3.75);
