@@ -27,5 +27,30 @@ public class PosTest {
         pos.parseBarcode(barcodes);
         assertThat(pos.getCartItems.size()).isEqualTo(3);
     }
+
+    @Test
+    public void calculate_free_promotion_test() {
+        List<String> barcodes = new ArrayList<String>();
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000003-2");
+        barcodes.add("ITEM000005");
+        barcodes.add("ITEM000005");
+        barcodes.add("ITEM000005");
+        List<String> freeBarcodes = new ArrayList<String>();
+        freeBarcodes.add("ITEM000001");
+        freeBarcodes.add("ITEM000003");
+        freeBarcodes.add("ITEM000005");
+        Pos pos = new Pos();
+        pos.parseBarcode(barcodes);
+        pos.calFreePromotion(freeBarcodes);
+        assertThat(pos.getCartItems.size()).isEqualTo(3);
+        assertThat(pos.getCartItems.get(1).getSumPrice()).isEqualTo(15);
+        assertThat(pos.getCartItems.get(1).getPromotionPrice()).isEqualTo(3);
+    }
+
     
 }
