@@ -38,9 +38,9 @@ public class Pos {
                 }
             }
         }
-        for (int i = 0; i < cartItems.size()-1; i++) {
-            for(int j = i+1;j < cartItems.size(); j++) {
-                if(cartItems.get(i).getItem().getBarcode().equals(cartItems.get(j).getItem().getBarcode())){
+        for (int i = 0; i < cartItems.size() - 1; i++) {
+            for (int j = i + 1; j < cartItems.size(); j++) {
+                if (cartItems.get(i).getItem().getBarcode().equals(cartItems.get(j).getItem().getBarcode())) {
                     CartItem cartItem = cartItems.get(i);
                     cartItem.setNum(cartItem.getNum() + cartItems.get(j).getNum());
                     cartItems.set(i, cartItem);
@@ -49,4 +49,19 @@ public class Pos {
             }
         }
     }
+
+    public ArrayList<CartItem> calFreePromotion(List<String> freeBarcode) {
+        ArrayList<CartItem> result = cartItems;
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < freeBarcode.size(); j++) {
+                if(result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
+                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
+                    result.get(i).setSumPrice(result.get(i).getNum()/3 * result.get(i).getItem().getPrice());
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
 }
