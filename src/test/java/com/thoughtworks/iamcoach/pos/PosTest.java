@@ -46,10 +46,10 @@ public class PosTest {
         freeBarcodes.add("ITEM000005");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        pos.calFreePromotion(freeBarcodes);
-        assertThat(pos.getCartItems.size()).isEqualTo(3);
-        assertThat(pos.getCartItems.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(pos.getCartItems.get(1).getPromotionPrice()).isEqualTo(3);
+        ArrayList<String> result = pos.calFreePromotion(freeBarcodes);
+        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
     }
 
     @Test
@@ -70,10 +70,10 @@ public class PosTest {
         freeBarcodes.add("ITEM000005");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        pos.calHalfPromotion(freeBarcodes);
-        assertThat(pos.getCartItems.size()).isEqualTo(3);
-        assertThat(pos.getCartItems.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(pos.getCartItems.get(1).getPromotionPrice()).isEqualTo(3);
+        ArrayList<String> result = pos.calHalfPromotion(freeBarcodes);
+        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
     }
 
     @Test
@@ -94,9 +94,9 @@ public class PosTest {
         freeBarcodes.add("ITEM000005:90");
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        pos.calDiscountPromotion(freeBarcodes);
-        assertThat(pos.getCartItems.size()).isEqualTo(3);
-        assertThat(pos.getCartItems.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(pos.getCartItems.get(1).getPromotionPrice()).isEqualTo(3.75);
+        ArrayList<String> result = pos.calDiscountPromotion(freeBarcodes);
+        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3.75);
     }
 }
