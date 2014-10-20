@@ -14,6 +14,22 @@ public class Pos {
     private double sumPrice;
     private double promotionPrice;
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public ArrayList<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public double getSumPrice() {
+        return sumPrice;
+    }
+
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
+
     {
         this.items.set(0, new Item(0, "ITEM000000", "可口可乐", "瓶", 3.00));
         this.items.set(1, new Item(1, "ITEM000001", "雪碧", "瓶", 3.00));
@@ -108,5 +124,18 @@ public class Pos {
             result += cartItems.get(i).getPromotionPrice();
         }
         return result;
+    }
+
+    public void comparePrice(ArrayList<CartItem> cartItems1, ArrayList<CartItem> cartItems2, ArrayList<CartItem> cartItems3) {
+        sumPrice = calSumPrice(cartItems1);
+        promotionPrice = calSumPromotionPrice(cartItems1);
+        if(calSumPromotionPrice(cartItems2) < promotionPrice){
+            cartItems = cartItems2;
+            promotionPrice = calSumPromotionPrice(cartItems2);
+        }
+        if(calSumPromotionPrice(cartItems3) < promotionPrice) {
+            cartItems = cartItems3;
+            promotionPrice = calSumPromotionPrice(cartItems3);
+        }
     }
 }
