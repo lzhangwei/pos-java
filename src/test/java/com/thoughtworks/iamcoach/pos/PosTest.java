@@ -50,8 +50,8 @@ public class PosTest {
         pos.parseBarcode(barcodes);
         ArrayList<CartItem> result = pos.calFreePromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
+        assertThat(result.get(0).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(0).getPromotionPrice()).isEqualTo(3);
     }
 
     @Test
@@ -74,8 +74,8 @@ public class PosTest {
         pos.parseBarcode(barcodes);
         ArrayList<CartItem> result = pos.calHalfPromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3);
+        assertThat(result.get(0).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(0).getPromotionPrice()).isEqualTo(3);
     }
 
     @Test
@@ -98,8 +98,8 @@ public class PosTest {
         pos.parseBarcode(barcodes);
         ArrayList<CartItem> result = pos.calDiscountPromotion(freeBarcodes);
         assertThat(result.size()).isEqualTo(3);
-        assertThat(result.get(1).getSumPrice()).isEqualTo(15);
-        assertThat(result.get(1).getPromotionPrice()).isEqualTo(3.75);
+        assertThat(result.get(0).getSumPrice()).isEqualTo(15);
+        assertThat(result.get(0).getPromotionPrice()).isEqualTo(3.75);
     }
 
     @Test
@@ -136,6 +136,9 @@ public class PosTest {
         cartItems1.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
         cartItems1.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
         cartItems1.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems1.get(0).setSumPrice(15);
+        cartItems1.get(1).setSumPrice(30);
+        cartItems1.get(2).setSumPrice(7.5);
         cartItems1.get(0).setPromotionPrice(3);
         cartItems1.get(1).setPromotionPrice(0);
         cartItems1.get(2).setPromotionPrice(2.5);
@@ -143,6 +146,9 @@ public class PosTest {
         cartItems2.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
         cartItems2.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
         cartItems2.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems1.get(0).setSumPrice(15);
+        cartItems1.get(1).setSumPrice(30);
+        cartItems1.get(2).setSumPrice(7.5);
         cartItems2.get(0).setPromotionPrice(3);
         cartItems2.get(1).setPromotionPrice(3.5);
         cartItems2.get(2).setPromotionPrice(1.25);
@@ -150,11 +156,15 @@ public class PosTest {
         cartItems3.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
         cartItems3.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
         cartItems3.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems1.get(0).setSumPrice(15);
+        cartItems1.get(1).setSumPrice(30);
+        cartItems1.get(2).setSumPrice(7.5);
         cartItems3.get(0).setPromotionPrice(3.75);
         cartItems3.get(1).setPromotionPrice(4.5);
         cartItems3.get(2).setPromotionPrice(0.75);
         Pos pos = new Pos();
         pos.comparePrice(cartItems1,cartItems2,cartItems3);
-        assertThat(pos.getSumPrice()).isEqualTo(43.5);
+        assertThat(pos.getSumPrice()).isEqualTo(52.5);
+        assertThat(pos.getPromotionPrice()).isEqualTo(9);
     }
 }
