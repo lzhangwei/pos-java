@@ -58,6 +58,8 @@ public class Pos {
                     cartItem.setNum(cartItem.getNum() + cartItems.get(j).getNum());
                     cartItems.set(i, cartItem);
                     cartItems.remove(j);
+                    i--;
+                    break;
                 }
             }
         }
