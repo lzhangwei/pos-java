@@ -108,6 +108,9 @@ public class PosTest {
         cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
         cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
         cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems.get(0).setSumPrice(15);
+        cartItems.get(1).setSumPrice(30);
+        cartItems.get(2).setSumPrice(7.5);
         Pos pos = new Pos();
         double result = pos.calSumPrice(cartItems);
         assertThat(result).isEqualTo(52.5);
@@ -124,7 +127,7 @@ public class PosTest {
         cartItems.get(2).setPromotionPrice(2.5);
         Pos pos = new Pos();
         double result = pos.calSumPromotionPrice(cartItems);
-        assertThat(result).isEqualTo(47);
+        assertThat(result).isEqualTo(5.5);
     }
 
     @Test
