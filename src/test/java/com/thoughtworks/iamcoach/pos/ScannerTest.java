@@ -26,7 +26,7 @@ public class ScannerTest {
         barcodes.add("ITEM000005");
         barcodes.add("ITEM000005");
         barcodes.add("ITEM000005");
-        String path = "../resources/cart.txt";
+        String path = "src/main/resources/cart.txt";
         Scanner scanner = new Scanner();
         List<String> result = scanner.readFile(path);
         assertThat(result.size()).isEqualTo(9);
