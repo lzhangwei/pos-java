@@ -15,7 +15,7 @@ public class CartItem {
     }
 
     public double getSumPrice() {
-        return sumPrice;
+        return num*item.getPrice();
     }
 
     public void setSumPrice(double sumPrice) {
