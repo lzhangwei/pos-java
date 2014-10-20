@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+
 public class PosTest {
 
     @Test
@@ -20,9 +22,9 @@ public class PosTest {
         barcodes.add("ITEM000005");
         barcodes.add("ITEM000005");
         ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
-        cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧","瓶",3.00),5));
-        cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝","千克",15.00),2));
-        cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面","袋",2.50),3));
+        cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
         assertThat(pos.getCartItems.size()).isEqualTo(3);
@@ -98,5 +100,58 @@ public class PosTest {
         assertThat(result.size()).isEqualTo(3);
         assertThat(result.get(1).getSumPrice()).isEqualTo(15);
         assertThat(result.get(1).getPromotionPrice()).isEqualTo(3.75);
+    }
+
+    @Test
+    public void caculate_sum_price() {
+        ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+        cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        Pos pos = new Pos();
+        double result = pos.calSumPrice(cartItems);
+        assertThat(result).isEqualTo(52.5);
+    }
+
+    @Test
+    public void caculate_sum_promotion_price() {
+        ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+        cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems.get(0).setPromotionPrice(3);
+        cartItems.get(1).setPromotionPrice(0);
+        cartItems.get(2).setPromotionPrice(2.5);
+        Pos pos = new Pos();
+        double result = pos.calSumPromotionPrice(cartItems);
+        assertThat(result).isEqualTo(47);
+    }
+
+    @Test
+    public void compare_sum_price() {
+        ArrayList<CartItem> cartItems1 = new ArrayList<CartItem>();
+        cartItems1.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems1.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems1.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems1.get(0).setPromotionPrice(3);
+        cartItems1.get(1).setPromotionPrice(0);
+        cartItems1.get(2).setPromotionPrice(2.5);
+        ArrayList<CartItem> cartItems2 = new ArrayList<CartItem>();
+        cartItems2.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems2.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems2.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems2.get(0).setPromotionPrice(3);
+        cartItems2.get(1).setPromotionPrice(3.5);
+        cartItems2.get(2).setPromotionPrice(1.25);
+        ArrayList<CartItem> cartItems3 = new ArrayList<CartItem>();
+        cartItems3.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
+        cartItems3.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
+        cartItems3.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
+        cartItems3.get(0).setPromotionPrice(3.75);
+        cartItems3.get(1).setPromotionPrice(4.5);
+        cartItems3.get(2).setPromotionPrice(0.75);
+        Pos pos = new Pos();
+        pos.comparePrice(cartItems1,cartItems2,cartItems3);
+        assertThat(pos.getSumPrice()).isEqualTo(43.5);
     }
 }
