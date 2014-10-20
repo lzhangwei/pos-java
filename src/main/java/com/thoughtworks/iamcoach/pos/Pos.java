@@ -101,4 +101,12 @@ public class Pos {
         }
         return result;
     }
+
+    public double calSumPromotionPrice(ArrayList<CartItem> cartItems) {
+        double result = 0;
+        for(int i = 0;i < cartItems.size();i++) {
+            result += cartItems.get(i).getPromotionPrice();
+        }
+        return result;
+    }
 }
