@@ -27,7 +27,7 @@ public class PosTest {
         cartItems.add(new CartItem(new Item(5, "ITEM000005", "方便面", "袋", 2.50), 3));
         Pos pos = new Pos();
         pos.parseBarcode(barcodes);
-        assertThat(pos.getCartItems.size()).isEqualTo(3);
+        assertThat(pos.getCartItems().size()).isEqualTo(3);
     }
 
     @Test
