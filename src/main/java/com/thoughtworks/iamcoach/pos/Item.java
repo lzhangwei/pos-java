@@ -4,7 +4,6 @@ public class Item {
     private int id;
     private String barcode;
     private String name;
-    private Category category;
     private String unit;
     private double price;
 
@@ -32,14 +31,6 @@ public class Item {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -56,11 +47,10 @@ public class Item {
         this.unit = unit;
     }
 
-    public Item(int id, String barcode, String name, Category category, String unit, double price) {
+    public Item(int id, String barcode, String name, String unit, double price) {
         this.id = id;
         this.barcode = barcode;
         this.name = name;
-        this.category = category;
         this.unit = unit;
         this.price = price;
     }
