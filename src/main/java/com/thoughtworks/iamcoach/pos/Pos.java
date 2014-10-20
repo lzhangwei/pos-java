@@ -54,9 +54,9 @@ public class Pos {
         ArrayList<CartItem> result = cartItems;
         for (int i = 0; i < result.size(); i++) {
             for (int j = 0; j < freeBarcode.size(); j++) {
-                if(result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
+                if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
                     result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    result.get(i).setSumPrice(result.get(i).getNum()/3 * result.get(i).getItem().getPrice());
+                    result.get(i).setPromotionPrice(result.get(i).getNum() / 3 * result.get(i).getItem().getPrice());
                     break;
                 }
             }
@@ -64,4 +64,33 @@ public class Pos {
         return result;
     }
 
+    public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcode) {
+        ArrayList<CartItem> result = cartItems;
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < freeBarcode.size(); j++) {
+                if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
+                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
+                    result.get(i).setPromotionPrice(result.get(i).getNum() / 2 * result.get(i).getItem().getPrice() / 2);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcode) {
+        ArrayList<CartItem> result = cartItems;
+        for (int i = 0; i < result.size(); i++) {
+            for (int j = 0; j < freeBarcode.size(); j++) {
+                String[] barcode = freeBarcode.get(j).split(":");
+                if (result.get(i).getItem().getBarcode().equals(barcode[0])) {
+                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
+                    double discount = (100 - Integer.parseInt(barcode[1])) / 100.0;
+                    result.get(i).setPromotionPrice(result.get(i).getNum() * result.get(i).getItem().getPrice() * discount);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }
