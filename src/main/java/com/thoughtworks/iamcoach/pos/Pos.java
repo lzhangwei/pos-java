@@ -40,7 +40,7 @@ public class Pos {
         cartItems = new ArrayList<CartItem>();
         for (int i = 0; i < barcodes.size(); i++) {
             String[] barcode = barcodes.get(i).split("-");
-            for (int j = 0; j < items.size(); i++) {
+            for (int j = 0; j < items.size(); j++) {
                 if (items.get(j).getBarcode().equals(barcode[0])) {
                     if (barcode.length == 1) {
                         cartItems.add(new CartItem(items.get(j), 1));
@@ -109,7 +109,7 @@ public class Pos {
 
     public double calSumPrice(ArrayList<CartItem> cartItems) {
         double result = 0;
-        for(int i = 0;i < cartItems.size();i++) {
+        for (int i = 0; i < cartItems.size(); i++) {
             result += cartItems.get(i).getSumPrice();
         }
         return result;
@@ -117,7 +117,7 @@ public class Pos {
 
     public double calSumPromotionPrice(ArrayList<CartItem> cartItems) {
         double result = 0;
-        for(int i = 0;i < cartItems.size();i++) {
+        for (int i = 0; i < cartItems.size(); i++) {
             result += cartItems.get(i).getPromotionPrice();
         }
         return result;
@@ -126,11 +126,11 @@ public class Pos {
     public void comparePrice(ArrayList<CartItem> cartItems1, ArrayList<CartItem> cartItems2, ArrayList<CartItem> cartItems3) {
         sumPrice = calSumPrice(cartItems1);
         promotionPrice = calSumPromotionPrice(cartItems1);
-        if(calSumPromotionPrice(cartItems2) < promotionPrice){
+        if (calSumPromotionPrice(cartItems2) < promotionPrice) {
             cartItems = cartItems2;
             promotionPrice = calSumPromotionPrice(cartItems2);
         }
-        if(calSumPromotionPrice(cartItems3) < promotionPrice) {
+        if (calSumPromotionPrice(cartItems3) < promotionPrice) {
             cartItems = cartItems3;
             promotionPrice = calSumPromotionPrice(cartItems3);
         }
