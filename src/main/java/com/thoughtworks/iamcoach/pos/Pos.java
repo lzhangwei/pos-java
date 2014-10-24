@@ -65,14 +65,14 @@ public class Pos {
         }
     }
 
-    public ArrayList<CartItem> calFreePromotion(List<String> freeBarcode) {
+    public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
         ArrayList<CartItem> result = cartItems;
-        for (int i = 0; i < result.size(); i++) {
-            for (int j = 0; j < freeBarcode.size(); j++) {
-                if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
-                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    double promotionPrice = (int) result.get(i).getNum() / 3 * result.get(i).getItem().getPrice();
-                    result.get(i).setPromotionPrice(promotionPrice);
+        for (CartItem cartItem : cartItems) {
+            for (String barcode : freeBarcodes) {
+                if (cartItem.getItem().getBarcode().equals(barcode)) {
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
+                    double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getItem().getPrice();
+                    cartItem.setPromotionPrice(promotionPrice);
                     break;
                 }
             }
