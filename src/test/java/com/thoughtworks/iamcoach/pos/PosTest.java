@@ -9,6 +9,20 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 public class PosTest {
 
+    private List<String> createBarcodes() {
+        List<String> barcodes = new ArrayList<String>();
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000001");
+        barcodes.add("ITEM000003-2");
+        barcodes.add("ITEM000005");
+        barcodes.add("ITEM000005");
+        barcodes.add("ITEM000005");
+        return barcodes;
+    }
+
     @Test
     public void parse_barcode_test() {
         List<String> barcodes = new ArrayList<String>();
