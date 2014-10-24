@@ -70,7 +70,7 @@ public class Pos {
         for (CartItem cartItem : cartItems) {
             for (String barcode : freeBarcodes) {
                 if (cartItem.getItem().getBarcode().equals(barcode)) {
-                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
                     double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getItem().getPrice();
                     cartItem.setPromotionPrice(promotionPrice);
                     break;
