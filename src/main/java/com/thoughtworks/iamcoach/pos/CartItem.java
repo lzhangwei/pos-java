@@ -46,4 +46,8 @@ public class CartItem {
     public double getPrice() {
         return item.getPrice();
     }
+
+    public String getBarcode() {
+        return item.getBarcode();
+    }
 }
