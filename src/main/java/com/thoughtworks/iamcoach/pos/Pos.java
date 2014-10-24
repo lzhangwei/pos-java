@@ -79,16 +79,22 @@ public class Pos {
     public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
         ArrayList<CartItem> result = cartItems;
         for (CartItem cartItem : cartItems) {
-            for (String barcode : freeBarcodes) {
-                if (cartItem.getBarcode().equals(barcode)) {
-                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
-                    double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getPrice();
-                    cartItem.setPromotionPrice(promotionPrice);
-                    break;
-                }
+            cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
+            if(isPromotionBarcode(cartItem, freeBarcodes)) {
+                double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getPrice();
+                cartItem.setPromotionPrice(promotionPrice);
             }
         }
         return result;
+    }
+
+    private boolean isPromotionBarcode(CartItem cartItem, List<String> freeBarcodes) {
+        for (String barcode : freeBarcodes) {
+            if (cartItem.getBarcode().equals(barcode)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcodes) {
