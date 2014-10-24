@@ -77,8 +77,8 @@ public class Pos {
     }
 
     public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = cartItems;
-        for (CartItem cartItem : cartItems) {
+        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
+        for (CartItem cartItem : result) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             if (isPromotionBarcode(cartItem, freeBarcodes)) {
                 double promotionPrice = (int) (cartItem.getNum() / 3) * cartItem.getPrice();
@@ -98,7 +98,7 @@ public class Pos {
     }
 
     public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = cartItems;
+        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
         for (CartItem cartItem : result) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             if (isPromotionBarcode(cartItem, freeBarcodes)) {
@@ -109,8 +109,8 @@ public class Pos {
     }
 
     public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = cartItems;
-        for (CartItem cartItem : cartItems) {
+        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
+        for (CartItem cartItem : result) {
             for (String barcode : freeBarcodes) {
                 String[] barcodes = barcode.split(":");
                 if (cartItem.getBarcode().equals(barcodes[0])) {
