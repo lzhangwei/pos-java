@@ -42,4 +42,8 @@ public class CartItem {
         this.item = item;
         this.num = num;
     }
+
+    public double getPrice() {
+        return item.getPrice();
+    }
 }
