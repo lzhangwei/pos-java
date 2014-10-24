@@ -39,24 +39,15 @@ public class Pos {
 
     public void parseBarcode(List<String> barcodes) {
         cartItems = new ArrayList<CartItem>();
+
         for (String barcode : barcodes) {
             String[] splitBarcode = barcode.split("-");
             Item item = findItem(splitBarcode[0]);
             int num = splitBarcode.length == 1 ? 1 : Integer.parseInt(splitBarcode[1]);
             cartItems.add(new CartItem(item, num));
         }
-        for (int i = 0; i < cartItems.size() - 1; i++) {
-            for (int j = i + 1; j < cartItems.size(); j++) {
-                if (cartItems.get(i).getBarcode().equals(cartItems.get(j).getBarcode())) {
-                    CartItem cartItem = cartItems.get(i);
-                    cartItem.setNum(cartItem.getNum() + cartItems.get(j).getNum());
-                    cartItems.set(i, cartItem);
-                    cartItems.remove(j);
-                    i--;
-                    break;
-                }
-            }
-        }
+
+        cartItems = mergeCartItems(cartItems);
     }
 
     private Item findItem(String barcode) {
