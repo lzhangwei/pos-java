@@ -71,7 +71,7 @@ public class Pos {
             for (String barcode : freeBarcodes) {
                 if (cartItem.getItem().getBarcode().equals(barcode)) {
                     cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
-                    double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getItem().getPrice();
+                    double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getPrice();
                     cartItem.setPromotionPrice(promotionPrice);
                     break;
                 }
@@ -85,8 +85,8 @@ public class Pos {
         for (CartItem cartItem : cartItems) {
             for (String barcode : freeBarcodes) {
                 if (cartItem.getItem().getBarcode().equals(barcode)) {
-                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
-                    cartItem.setPromotionPrice((int) cartItem.getNum() / 2 * cartItem.getItem().getPrice() / 2);
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
+                    cartItem.setPromotionPrice((int) cartItem.getNum() / 2 * cartItem.getPrice() / 2);
                     break;
                 }
             }
@@ -100,9 +100,9 @@ public class Pos {
             for (String barcode : freeBarcodes) {
                 String[] barcodes = barcode.split(":");
                 if (cartItem.getItem().getBarcode().equals(barcodes[0])) {
-                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
                     double discount = (100 - Integer.parseInt(barcodes[1])) / 100.0;
-                    cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getItem().getPrice() * discount);
+                    cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getPrice() * discount);
                     break;
                 }
             }
