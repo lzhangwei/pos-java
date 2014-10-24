@@ -1,6 +1,6 @@
 package com.thoughtworks.iamcoach.pos;
 
-public class CartItem {
+public class CartItem implements Cloneable{
     private Item item;
     private double num;
     private double sumPrice;
@@ -49,5 +49,19 @@ public class CartItem {
 
     public String getBarcode() {
         return item.getBarcode();
+    }
+
+    public Object clone ()
+    {
+        Object o=null;
+        try
+        {
+            o=super.clone();
+        }
+        catch(CloneNotSupportedException e)
+        {
+            System.out.println(e.toString());
+        }
+        return o;
     }
 }

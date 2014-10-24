@@ -1,6 +1,5 @@
 package com.thoughtworks.iamcoach.pos;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +75,16 @@ public class Pos {
         return cartItems;
     }
 
+    private ArrayList<CartItem> clone(ArrayList<CartItem> cartItems) {
+        ArrayList<CartItem> result = new ArrayList<CartItem>();
+        for(CartItem cartItem : cartItems) {
+            result.add((CartItem)cartItem.clone());
+        }
+        return result;
+    }
+
     public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
+        ArrayList<CartItem> result = clone(cartItems);
         for (CartItem cartItem : result) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             if (isPromotionBarcode(cartItem, freeBarcodes)) {
@@ -98,7 +105,7 @@ public class Pos {
     }
 
     public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
+        ArrayList<CartItem> result = clone(cartItems);
         for (CartItem cartItem : result) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             if (isPromotionBarcode(cartItem, freeBarcodes)) {
@@ -109,7 +116,7 @@ public class Pos {
     }
 
     public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcodes) {
-        ArrayList<CartItem> result = (ArrayList<CartItem>)cartItems.clone();
+        ArrayList<CartItem> result = clone(cartItems);
         for (CartItem cartItem : result) {
             for (String barcode : freeBarcodes) {
                 String[] barcodes = barcode.split(":");
