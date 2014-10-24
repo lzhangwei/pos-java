@@ -38,14 +38,14 @@ public class Pos {
 
     public void parseBarcode(List<String> barcodes) {
         cartItems = new ArrayList<CartItem>();
-        for (int i = 0; i < barcodes.size(); i++) {
-            String[] barcode = barcodes.get(i).split("-");
-            for (int j = 0; j < items.size(); j++) {
-                if (items.get(j).getBarcode().equals(barcode[0])) {
-                    if (barcode.length == 1) {
-                        cartItems.add(new CartItem(items.get(j), 1));
+        for (String barcode : barcodes) {
+            String[] splitBarcode = barcode.split("-");
+            for (Item item : items) {
+                if (item.getBarcode().equals(splitBarcode[0])) {
+                    if (splitBarcode.length == 1) {
+                        cartItems.add(new CartItem(item, 1));
                     } else {
-                        cartItems.add(new CartItem(items.get(j), Integer.parseInt(barcode[1])));
+                        cartItems.add(new CartItem(item, Integer.parseInt(splitBarcode[1])));
                     }
                     break;
                 }
