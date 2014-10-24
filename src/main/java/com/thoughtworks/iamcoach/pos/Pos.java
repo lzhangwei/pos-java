@@ -81,7 +81,7 @@ public class Pos {
         for (CartItem cartItem : cartItems) {
             cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
             if (isPromotionBarcode(cartItem, freeBarcodes)) {
-                double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getPrice();
+                double promotionPrice = (int) (cartItem.getNum() / 3) * cartItem.getPrice();
                 cartItem.setPromotionPrice(promotionPrice);
             }
         }
