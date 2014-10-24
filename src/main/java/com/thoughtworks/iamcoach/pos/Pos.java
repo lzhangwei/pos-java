@@ -148,6 +148,7 @@ public class Pos {
     }
 
     public void comparePrice(ArrayList<CartItem> cartItems1, ArrayList<CartItem> cartItems2, ArrayList<CartItem> cartItems3) {
+        cartItems = cartItems1;
         sumPrice = calSumPrice(cartItems1);
         promotionPrice = calSumPromotionPrice(cartItems1);
         if (calSumPromotionPrice(cartItems2) > promotionPrice) {
