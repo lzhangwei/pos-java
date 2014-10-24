@@ -1,5 +1,6 @@
 package com.thoughtworks.iamcoach.pos;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,21 @@ public class Pos {
             }
         }
         return result;
+    }
+
+    private ArrayList<CartItem> mergeCartItems(ArrayList<CartItem> cartItems) {
+        for (int i = 0; i < cartItems.size() - 1; i++) {
+            for (int j = i + 1; j < cartItems.size(); j++) {
+                if (cartItems.get(i).getBarcode().equals(cartItems.get(j).getBarcode())) {
+                    double newNum = cartItems.get(i).getNum() + cartItems.get(j).getNum();
+                    cartItems.get(i).setNum(newNum);
+                    cartItems.remove(j);
+                    i--;
+                    break;
+                }
+            }
+        }
+        return cartItems;
     }
 
     public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
