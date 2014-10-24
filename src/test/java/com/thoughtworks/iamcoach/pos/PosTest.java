@@ -25,16 +25,7 @@ public class PosTest {
 
     @Test
     public void parse_barcode_test() {
-        List<String> barcodes = new ArrayList<String>();
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000003-2");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
+        List<String> barcodes = createBarcodes();
         ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
         cartItems.add(new CartItem(new Item(1, "ITEM000001", "雪碧", "瓶", 3.00), 5));
         cartItems.add(new CartItem(new Item(3, "ITEM000003", "荔枝", "千克", 15.00), 2));
@@ -46,16 +37,7 @@ public class PosTest {
 
     @Test
     public void calculate_free_promotion_test() {
-        List<String> barcodes = new ArrayList<String>();
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000003-2");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
+        List<String> barcodes = createBarcodes();
         List<String> freeBarcodes = new ArrayList<String>();
         freeBarcodes.add("ITEM000001");
         freeBarcodes.add("ITEM000003");
@@ -70,16 +52,7 @@ public class PosTest {
 
     @Test
     public void calculate_half_promotion_test() {
-        List<String> barcodes = new ArrayList<String>();
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000003-2");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
+        List<String> barcodes = createBarcodes();
         List<String> freeBarcodes = new ArrayList<String>();
         freeBarcodes.add("ITEM000001");
         freeBarcodes.add("ITEM000003");
@@ -94,16 +67,7 @@ public class PosTest {
 
     @Test
     public void calculate_discount_promotion_test() {
-        List<String> barcodes = new ArrayList<String>();
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000001");
-        barcodes.add("ITEM000003-2");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
-        barcodes.add("ITEM000005");
+        List<String> barcodes = createBarcodes();
         List<String> freeBarcodes = new ArrayList<String>();
         freeBarcodes.add("ITEM000001:75");
         freeBarcodes.add("ITEM000003:85");
