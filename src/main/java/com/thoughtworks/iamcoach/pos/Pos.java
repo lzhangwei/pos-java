@@ -120,8 +120,8 @@ public class Pos {
 
     public double calSumPromotionPrice(ArrayList<CartItem> cartItems) {
         double result = 0;
-        for (int i = 0; i < cartItems.size(); i++) {
-            result += cartItems.get(i).getPromotionPrice();
+        for (CartItem cartItem : cartItems) {
+            result += cartItem.getPromotionPrice();
         }
         return result;
     }
