@@ -71,7 +71,7 @@ public class Pos {
             for (int j = 0; j < freeBarcode.size(); j++) {
                 if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
                     result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    double promotionPrice = (int)result.get(i).getNum() / 3 * result.get(i).getItem().getPrice();
+                    double promotionPrice = (int) result.get(i).getNum() / 3 * result.get(i).getItem().getPrice();
                     result.get(i).setPromotionPrice(promotionPrice);
                     break;
                 }
@@ -86,7 +86,7 @@ public class Pos {
             for (int j = 0; j < freeBarcode.size(); j++) {
                 if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
                     result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    result.get(i).setPromotionPrice((int)result.get(i).getNum() / 2 * result.get(i).getItem().getPrice() / 2);
+                    result.get(i).setPromotionPrice((int) result.get(i).getNum() / 2 * result.get(i).getItem().getPrice() / 2);
                     break;
                 }
             }
@@ -112,8 +112,8 @@ public class Pos {
 
     public double calSumPrice(ArrayList<CartItem> cartItems) {
         double result = 0;
-        for (int i = 0; i < cartItems.size(); i++) {
-            result += cartItems.get(i).getSumPrice();
+        for (CartItem cartItem : cartItems) {
+            result += cartItem.getSumPrice();
         }
         return result;
     }
