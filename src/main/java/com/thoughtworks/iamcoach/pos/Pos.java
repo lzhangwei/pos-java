@@ -118,14 +118,23 @@ public class Pos {
     public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcodes) {
         ArrayList<CartItem> result = clone(cartItems);
         for (CartItem cartItem : result) {
-            for (String barcode : freeBarcodes) {
+            cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
+            String barcode = hasDiscountPromotionBarcode(cartItem, freeBarcodes);
+            if(barcode != null) {
                 String[] barcodes = barcode.split(":");
-                if (cartItem.getBarcode().equals(barcodes[0])) {
-                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
-                    double discount = (100 - Integer.parseInt(barcodes[1])) / 100.0;
-                    cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getPrice() * discount);
-                    break;
-                }
+                double discount = (100 - Integer.parseInt(barcodes[1])) / 100.0;
+                cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getPrice() * discount);
+            }
+        }
+        return result;
+    }
+
+    private String hasDiscountPromotionBarcode(CartItem cartItem, List<String> freeBarcodes) {
+        String result = null;
+        for (String barcode : freeBarcodes) {
+            String[] barcodes = barcode.split(":");
+            if (cartItem.getBarcode().equals(barcodes[0])) {
+                result = barcode;
             }
         }
         return result;
