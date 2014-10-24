@@ -40,16 +40,9 @@ public class Pos {
         cartItems = new ArrayList<CartItem>();
         for (String barcode : barcodes) {
             String[] splitBarcode = barcode.split("-");
-            for (Item item : items) {
-                if (item.getBarcode().equals(splitBarcode[0])) {
-                    if (splitBarcode.length == 1) {
-                        cartItems.add(new CartItem(item, 1));
-                    } else {
-                        cartItems.add(new CartItem(item, Integer.parseInt(splitBarcode[1])));
-                    }
-                    break;
-                }
-            }
+            Item item = findItem(splitBarcode[0]);
+            int num = splitBarcode.length == 1 ? 1 : Integer.parseInt(splitBarcode[1]);
+            cartItems.add(new CartItem(item, num));
         }
         for (int i = 0; i < cartItems.size() - 1; i++) {
             for (int j = i + 1; j < cartItems.size(); j++) {
@@ -63,6 +56,17 @@ public class Pos {
                 }
             }
         }
+    }
+
+    private Item findItem(String barcode) {
+        Item result = null;
+        for (Item item : items) {
+            if (item.getBarcode().equals(barcode)) {
+                result = item;
+                break;
+            }
+        }
+        return result;
     }
 
     public ArrayList<CartItem> calFreePromotion(List<String> freeBarcodes) {
