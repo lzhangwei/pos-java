@@ -80,13 +80,13 @@ public class Pos {
         return result;
     }
 
-    public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcode) {
+    public ArrayList<CartItem> calHalfPromotion(List<String> freeBarcodes) {
         ArrayList<CartItem> result = cartItems;
-        for (int i = 0; i < result.size(); i++) {
-            for (int j = 0; j < freeBarcode.size(); j++) {
-                if (result.get(i).getItem().getBarcode().equals(freeBarcode.get(j))) {
-                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    result.get(i).setPromotionPrice((int) result.get(i).getNum() / 2 * result.get(i).getItem().getPrice() / 2);
+        for (CartItem cartItem : cartItems) {
+            for (String barcode : freeBarcodes) {
+                if (cartItem.getItem().getBarcode().equals(barcode)) {
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
+                    cartItem.setPromotionPrice((int) cartItem.getNum() / 2 * cartItem.getItem().getPrice() / 2);
                     break;
                 }
             }
@@ -94,15 +94,15 @@ public class Pos {
         return result;
     }
 
-    public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcode) {
+    public ArrayList<CartItem> calDiscountPromotion(List<String> freeBarcodes) {
         ArrayList<CartItem> result = cartItems;
-        for (int i = 0; i < result.size(); i++) {
-            for (int j = 0; j < freeBarcode.size(); j++) {
-                String[] barcode = freeBarcode.get(j).split(":");
-                if (result.get(i).getItem().getBarcode().equals(barcode[0])) {
-                    result.get(i).setSumPrice(result.get(i).getNum() * result.get(i).getItem().getPrice());
-                    double discount = (100 - Integer.parseInt(barcode[1])) / 100.0;
-                    result.get(i).setPromotionPrice(result.get(i).getNum() * result.get(i).getItem().getPrice() * discount);
+        for (CartItem cartItem : cartItems) {
+            for (String barcode : freeBarcodes) {
+                String[] barcodes = barcode.split(":");
+                if (cartItem.getItem().getBarcode().equals(barcodes[0])) {
+                    cartItem.setSumPrice(cartItem.getNum() * cartItem.getItem().getPrice());
+                    double discount = (100 - Integer.parseInt(barcodes[1])) / 100.0;
+                    cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getItem().getPrice() * discount);
                     break;
                 }
             }
