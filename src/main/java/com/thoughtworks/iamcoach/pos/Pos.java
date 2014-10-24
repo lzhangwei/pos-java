@@ -53,7 +53,7 @@ public class Pos {
         }
         for (int i = 0; i < cartItems.size() - 1; i++) {
             for (int j = i + 1; j < cartItems.size(); j++) {
-                if (cartItems.get(i).getItem().getBarcode().equals(cartItems.get(j).getItem().getBarcode())) {
+                if (cartItems.get(i).getBarcode().equals(cartItems.get(j).getBarcode())) {
                     CartItem cartItem = cartItems.get(i);
                     cartItem.setNum(cartItem.getNum() + cartItems.get(j).getNum());
                     cartItems.set(i, cartItem);
@@ -69,7 +69,7 @@ public class Pos {
         ArrayList<CartItem> result = cartItems;
         for (CartItem cartItem : cartItems) {
             for (String barcode : freeBarcodes) {
-                if (cartItem.getItem().getBarcode().equals(barcode)) {
+                if (cartItem.getBarcode().equals(barcode)) {
                     cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
                     double promotionPrice = (int) cartItem.getNum() / 3 * cartItem.getPrice();
                     cartItem.setPromotionPrice(promotionPrice);
@@ -84,7 +84,7 @@ public class Pos {
         ArrayList<CartItem> result = cartItems;
         for (CartItem cartItem : cartItems) {
             for (String barcode : freeBarcodes) {
-                if (cartItem.getItem().getBarcode().equals(barcode)) {
+                if (cartItem.getBarcode().equals(barcode)) {
                     cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
                     cartItem.setPromotionPrice((int) cartItem.getNum() / 2 * cartItem.getPrice() / 2);
                     break;
@@ -99,7 +99,7 @@ public class Pos {
         for (CartItem cartItem : cartItems) {
             for (String barcode : freeBarcodes) {
                 String[] barcodes = barcode.split(":");
-                if (cartItem.getItem().getBarcode().equals(barcodes[0])) {
+                if (cartItem.getBarcode().equals(barcodes[0])) {
                     cartItem.setSumPrice(cartItem.getNum() * cartItem.getPrice());
                     double discount = (100 - Integer.parseInt(barcodes[1])) / 100.0;
                     cartItem.setPromotionPrice(cartItem.getNum() * cartItem.getPrice() * discount);
